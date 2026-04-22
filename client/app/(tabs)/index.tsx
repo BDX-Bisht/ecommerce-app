@@ -144,7 +144,7 @@ export default function Home() {
                             Popular
                         </Text>
                         <TouchableOpacity onPress={() => router.push("/shop")}>
-                            <Text className="text-secondary tesm">See all</Text>
+                            <Text className="text-secondary text-sm">See all</Text>
                         </TouchableOpacity>
                     </View>
 
