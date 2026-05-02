@@ -50,10 +50,9 @@ export default function ProductDetails() {
     };
 
     useEffect(() => {
-        setTimeout(() => {
-            fetchProduct();
-        }, 500);
-    }, []);
+        const timer = setTimeout(fetchProduct, 500);
+        return () => clearTimeout(timer);
+    }, [id]);
 
     if (loading) {
         return (
@@ -94,7 +93,7 @@ export default function ProductDetails() {
                         showsHorizontalScrollIndicator={false}
                         scrollEventThrottle={16}
                         onScroll={(e) => {
-                            const slide = Math.ceil(
+                            const slide = Math.round(
                                 e.nativeEvent.contentOffset.x /
                                     e.nativeEvent.layoutMeasurement.width,
                             );
