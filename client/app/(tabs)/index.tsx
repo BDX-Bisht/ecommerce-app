@@ -144,7 +144,9 @@ export default function Home() {
                             Popular
                         </Text>
                         <TouchableOpacity onPress={() => router.push("/shop")}>
-                            <Text className="text-secondary text-sm">See all</Text>
+                            <Text className="text-secondary text-sm">
+                                See all
+                            </Text>
                         </TouchableOpacity>
                     </View>
 
@@ -153,7 +155,7 @@ export default function Home() {
                         <ActivityIndicator size={"large"} />
                     ) : (
                         <View className="flex-row flex-wrap justify-between">
-                            {products.slice(0, 4).map((product, index) => (
+                            {products.slice(0, 4).map((product) => (
                                 <ProductCard
                                     key={product._id}
                                     product={product}
