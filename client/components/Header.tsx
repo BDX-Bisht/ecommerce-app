@@ -4,6 +4,7 @@ import { HeaderProps } from "@/constants/types";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "@/constants";
 import { useRouter } from "expo-router";
+import { useCart } from "@/context/CartContext";
 
 export default function Header({
     title,
@@ -14,7 +15,7 @@ export default function Header({
     showLogo,
 }: HeaderProps) {
     const router = useRouter();
-    const { itemCount } = { itemCount: 6 };
+    const { itemCount } = useCart();
 
     return (
         <View className="flex-row items-center justify-between px-4 py-3 bg-white">
@@ -71,7 +72,9 @@ export default function Header({
                     </TouchableOpacity>
                 )}
                 {showCart && (
-                    <TouchableOpacity onPress={()=>router.push('/(tabs)/cart')} >
+                    <TouchableOpacity
+                        onPress={() => router.push("/(tabs)/cart")}
+                    >
                         <View className="relative">
                             <Ionicons
                                 name="bag-outline"
@@ -79,7 +82,9 @@ export default function Header({
                                 color={COLORS.primary}
                             />
                             <View className="absolute -top-1 -right-1 bg-accent w-4 h-4 rounded-full items-center justify-center">
-                                <Text className="text-white text-[10px] font-bold" >{itemCount}</Text>
+                                <Text className="text-white text-[10px] font-bold">
+                                    {itemCount}
+                                </Text>
                             </View>
                         </View>
                     </TouchableOpacity>
