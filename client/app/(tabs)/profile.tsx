@@ -6,12 +6,15 @@ import { useRouter } from "expo-router";
 import Header from "@/components/Header";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS, PROFILE_MENU } from "@/constants";
+import { useAuth, useClerk } from "@clerk/expo";
 
 export default function Profile() {
-    const { user } = { user: dummyUser };
+    const { user, signOut } = useClerk();
     const router = useRouter();
+    // const { signOut } = useAuth();
 
     const handleLogout = async () => {
+        await signOut();
         router.replace("/sign-in");
     };
 
@@ -70,7 +73,9 @@ export default function Profile() {
                                 />
                             </View>
                             <Text className="text-left font-bold text-primary">
-                                {user.firstName + " " + user.lastName}
+                                {user.firstName
+                                    ? user.firstName + " " + user.lastName
+                                    : "User"}
                             </Text>
                             <Text className="text-secondary text-sm">
                                 {user.emailAddresses[0].emailAddress}
